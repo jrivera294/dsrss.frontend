@@ -1,0 +1,41 @@
+<div class="row">
+	<div class="col-md-4">
+		<label for="categorias">Categorías: </label>
+		<select id="categorias" ng-options="category.name for category in categories track by category.id" ng-model="category" class="form-control">
+			<option value="">Todas</option>
+		</select>
+	</div>
+	<div class="col-md-4">
+		<label for="fuentes">Fuentes: </label>
+		<select id="fuentes" ng-options="source.name for source in category.sources track by source.id" ng-model="source" class="form-control">
+			<option value="">Todas</option>
+		</select>
+	</div>
+	<div class="col-md-4">
+	</div>
+</div>
+<br>
+
+<div class="row">
+	<div ng-repeat="news in list | filter:{sourceId: source.id, categoryId: category.id } | orderBy:'-date' | limitTo: listLimit" class="row">
+		<div ng-click="news.showContent = toggleShowContent(news.showContent)">
+			<div class="col-xs-12">
+			 		<!--<img ng-src="{{news.imgUrl}}" class="img-rounded blog-img"/>-->
+			 		<img ng-src="./test.jpg" class="img-rounded blog-img"/>
+			 		<h4>{{news.title}}</h4>
+			 		<p ng-bind-html="news.content" ng-show="news.showContent" class="show-hide"></p>
+			 		<button ng-if=""></button>
+			 		<p>Fuente:  <a href="{{news.url}}">{{news.sourceName}}</a> Fecha: {{news.date | date:"dd/mm/yyyy"}}</p> 	
+			</div>
+
+		</div>	
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3"></div>
+	<div class="col-md-6">
+		<br>
+		<button class="btn btn-success btn-block" ng-click="listLimit = listLimit + 5">Cargar mas...</button>
+	</div>
+	<div class="col-md-3"></div>
+</div>
