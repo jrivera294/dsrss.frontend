@@ -27,8 +27,8 @@
 		</div>
 		<div class="col-sm-6">
 			<br>
-			<button ng-hide="mailSubs" class="btn btn-success">Activar</button>
-			<button ng-show="mailSubs" class="btn btn-danger">Desactivar</button>
+			<button ng-hide="mailSubs" ng-click="setMailSubs()" class="btn btn-success">Activar</button>
+			<button ng-show="mailSubs" ng-click="setMailSubs()" class="btn btn-danger">Desactivar</button>
 		</div>
 	</div>
 </div>

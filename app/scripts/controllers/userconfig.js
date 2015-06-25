@@ -33,6 +33,28 @@ angular.module('dsrssApp')
     	}
     };
 
+    $scope.setMailSubs = function(){
+    	if($scope.mailSubs === false){
+ 			$http.patch('http://localhost:8000/userProfile/'+$scope.user.id+'/', {mailFlag:true}).
+			success(function() {
+				console.log('Suscribir email success');
+				$scope.mailSubs = true;
+			}).
+			error(function(/*data, status, headers, config*/) {
+				console.log('Suscribir email failed');
+			});
+    	}else{
+ 			$http.patch('http://localhost:8000/userProfile/'+$scope.user.id+'/', {mailFlag:false}).
+			success(function() {
+				console.log('Desuscribir email success');
+				$scope.mailSubs = false;
+			}).
+			error(function(/*data, status, headers, config*/) {
+				console.log('Desuscribir email failed');
+			});
+    	}
+    };
+
     $http.get('http://localhost:8000/categories/')
 	    .success(function(data) {
 			$scope.categories = data;
@@ -55,5 +77,9 @@ angular.module('dsrssApp')
 
 			    });
 	    });
-	$scope.mailSubs=true;
+  	    $http.get('http://localhost:8000/getProfile')
+	    .success(function(data) {
+	    	$scope.mailSubs = data.mailFlag;
+	    });
+	//$scope.mailSubs=true;
   });
