@@ -14,6 +14,10 @@ angular.module('dsrssApp').controller('ListCtrl', ['$sce','$scope', '$http', 'dj
     $scope.listLimit = 10;
 
 
+    $scope.sendClick = function(advertisingId){
+	    $http.get('http://localhost:8000/advertising/'+advertisingId+'/clickAdvertising/');
+    }
+
     $scope.toggleShowContent = function(news){
     	if(news)
     		return false;
@@ -62,4 +66,11 @@ angular.module('dsrssApp').controller('ListCtrl', ['$sce','$scope', '$http', 'dj
 	      djangoAuth.setUsername(data.username);
 	      fillList();
 	    });
+
+    $http.get('http://localhost:8000/advertising/getAdvertising/')
+	    .success(function(data) {
+	      $scope.advertising = data;
+	      //console.log(data);
+	    });
+
   }]);
