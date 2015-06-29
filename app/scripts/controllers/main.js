@@ -10,6 +10,7 @@
 angular.module('dsrssApp')
   .controller('MainCtrl', function ($scope,$location,djangoAuth) {
   	$scope.authenticated = false;
+    $scope.username = '';
 
 	$scope.logout = function(){
 		djangoAuth.logout();

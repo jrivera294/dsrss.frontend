@@ -62,7 +62,7 @@ angular.module('dsrssApp').controller('ListCtrl', ['$sce','$scope', '$http', 'dj
     $http.get('http://localhost:8000/currentUser')
 	    .success(function(data) {
 	      $scope.categories = data.categories;
-	      console.log(data.username);
+	      //console.log(data.username);
 	      djangoAuth.setUsername(data.username);
 	      fillList();
 	    });
